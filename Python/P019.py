@@ -1,21 +1,23 @@
-def div_100(year):
+def div_100p(year):
     return year % 100 == 0
 
-def div_400(year):
+def div_400p(year):
     return year % 400 == 0
 
-def div_4(year):
+def div_4p(year):
     return year % 4 == 0
 
 class Year:
 
+    days_of_week = {1, 2, 3, 4, 5, 6, 7}
+    
     def __init__(self, year):
         "Used to calculate data about the days in the year"
         self.year = year
         self._feb_days = None
         self._year_days = None
         self.months_days = [31, self.feb_days, 31, 30,
-           31, 30, 31, 31, 30, 31, 30, 31] 
+                            31, 30, 31, 31, 30, 31, 30, 31] 
         
     @property
     def feb_days(self):
@@ -36,10 +38,8 @@ class Year:
         return self._year_days
 
     def _leap_yearp(self):
-        if (div_100(self.year) and div_400(self.year)
-        or div_4(self.year) and not div_100(self.year)):
-            return True
-        return False
+        return (div_100p(self.year) and div_400p(self.year)
+                or div_4p(self.year) and not div_100p(self.year))
 
 def get_start_day_of_year_given_previous(year, start_day=2):
     yr = Year(year)
