@@ -15,3 +15,5 @@
   [number]
   (reduce max (filter #(and (zero? (mod number %)) (prime? %))
                       (take-while #(< % (Math/sqrt number)) (num-iter)))))
+
+(greatest-prime-of 600851475143)
